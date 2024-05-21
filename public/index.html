@@ -40,7 +40,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // 顯示所有商品資料
+    // 顯示歷年價格
     fetch('/api/price')
             .then(response => response.json())
             .then(data => {
@@ -56,7 +56,7 @@
               });
             });
 
-    // 處理日期查詢
+    // 用年月份查詢
     document.getElementById('search-form').addEventListener('submit', function(event) {
       event.preventDefault();
       const date = document.getElementById('date').value;

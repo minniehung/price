@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 连接到 SQLite 数据库
+// 連結資料庫
 const db = new sqlite3.Database('db/sqlite.db', (err) => {
     if (err) {
         console.error(err.message);
@@ -24,7 +24,7 @@ const db = new sqlite3.Database('db/sqlite.db', (err) => {
     }
 });
 
-// 新增商品数据的 API
+// 新增price的API
 app.post('/api/price', (req, res) => {
     const { date, price, volume } = req.body;
     const sql = `INSERT INTO price (date, price, volume) VALUES (?, ?, ?)`;
@@ -36,7 +36,7 @@ app.post('/api/price', (req, res) => {
     });
 });
 
-// 查询商品数据的 API
+// 查询價格的API
 app.get('/api/price', (req, res) => {
     const { search } = req.query;
     let sql = `SELECT * FROM price`;
@@ -51,7 +51,7 @@ app.get('/api/price', (req, res) => {
     });
 });
 
-// 测试数据库连接
+// 確認資料庫的連結
 app.get('/test/database', (req, res) => {
     db.get('SELECT * FROM price LIMIT 1', (err, row) => {
         if (err) {
